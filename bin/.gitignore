@@ -15,3 +15,8 @@
 /Singleton.class
 /TicketSales.class
 /TimeConverter.class
+/PhoneNumber.class
+/Cookies.class
+/BankAccounts.class
+/BankAccounts$Account$AccountType.class
+/BankAccounts$Account.class
