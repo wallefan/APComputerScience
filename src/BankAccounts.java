@@ -1,6 +1,8 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,27 +10,27 @@ import java.util.Scanner;
 public class BankAccounts {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		main(args[1] == "-" ? System.in : new FileInputStream(args[0]));
+		main(args[1] == "-" ? System.in : new FileInputStream(args[0]), args.length > 1 ?
+				new ForkOutputStream(System.out, new FileOutputStream(args[1])) : System.out);
 
 	}
 
-	private static void main(InputStream input) {
+	private static void main(InputStream input, OutputStream output) {
 		Scanner s = new Scanner(input);
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		readInput(s, accounts);
-
-	}
-	
-	public static void run(List<Account> accounts, int months) {
-		for(int month = 0; month < months; month++) {
-			
+		do {
+			for(Account a : accounts) {
+				System.out.println("Account "+a.accountNumber);
+				System.out.println("Balance:");
+			}
 		}
+		
 	}
 
 	private static void readInput(Scanner s, List<Account> out) {
 		// Any malformed input data is ignored. This is my not-janky-at-all way of
-		// implementing that with a Scanner because I know of no better tool. Or even if
-		// there is a better way in Java.
+		// implementing that.
 		while (s.hasNextLine()) {
 			Account a = new Account();
 			if (!s.hasNextInt()) {
@@ -53,11 +55,11 @@ public class BankAccounts {
 			}
 			a.minBalance = s.nextFloat();
 
-			if (!s.hasNextFloat()) {
+			if (!s.hasNextDouble()) {
 				s.nextLine();
 				continue;
 			}
-			a.currentBalance = s.nextFloat();
+			a.currentBalance = s.nextDouble();
 
 			// Should it skip if there's extraneous data?
 			if (s.hasNext()) {
@@ -77,7 +79,24 @@ public class BankAccounts {
 
 		AccountType accountType;
 		float minBalance;
-		float currentBalance;
+		double currentBalance;
+		
+		public double endMonth() {
+			if (currentBalance < minBalance) {
+				return currentBalance - (accountType == Account.AccountType.CHECKING ? 25 : 10); // service charge
+			} else
+				switch (accountType) {
+				case CHECKING:
+					if (currentBalance >= (minBalance + 5000))
+						return currentBalance + (currentBalance * (.05D / 12));
+					else
+						return currentBalance + (currentBalance * (.03D / 12));
+				case SAVINGS:
+					return currentBalance + (currentBalance * (.04D / 12));
+				default:
+					throw new Error("Invalid account type");
+				}
+		}
 	}
 
 }
