@@ -38,8 +38,8 @@ public class PhoneNumber {
 													// concatenated rather than summed
 		
 		default:
-			l.stream().forEach(System.out::print);
-			System.out.println();
+			l.stream().forEach(System.out::print); // print all digits remaining in the list to stdout
+			System.out.println(); // output a newline
 		}
 
 	}
