@@ -1,0 +1,73 @@
+6.1a.
+int i=0;
+while(i<n) {
+	System.out.println(i + " squared is "+i*i);
+	i++;
+}
+
+int i=10;
+while(i<n) {
+	System.out.print(i+" ");
+	i+=10;
+}
+
+6.1c.
+int i=1;
+while(i<n) {
+	System.out.print(i+" ");
+	i<<=1; // logial shift w00t (...sorry)
+}
+
+6.2a.
+int sum = 0;
+for(int i=2;i<=100;i+=2) sum+=i;
+System.out.print(i);
+
+6.2c.
+int i=a, sum=0;
+if(a%2 == 0) i++;
+for(;i<b;i+=2) sum+=i;
+System.out.println(i);
+
+6.4a. 1 2 3 4 5 6 7 8 9
+6.4c. 10 9 8 7 6 5 4 3 2
+6.4e. 1 2 4 8
+
+6.5
+
+The street on which Apple HQ currently resi--oh sorry.  (And for those of you being pedantic *cough cough* Dan, they haven't moved into the Donut yet so hah!)
+An infinite loop is a loop that has no termination condition, such as `for(;;) {...}` or while(true) {...}`.  These will never terminate unless they encounter
+a break statement.  If your program is stuck in an infinite loop with no way of exiting it, unless you are in an IDE, Ctrl+C (for Cancel) will ask it to terminate.
+(However if it doesn't your users will be ticked off at you.)  In Java, this will terminate your program immediately since Java can't do signal handlers.  In
+Python, you get a KeyboardInterrupt exception that you can catch.
+
+6.8.
+
+A sentinel value is the termination condition for a loop.  For example, for loops usually have numeric sentinel values (although this is entirely convention;
+you can write a for loop however you like, and it will still be legal, but people will look at you funny if it doesn't make any sense).  Numerical sentinel
+values should be used in for loops, or when otherwise looping a certain number of times or up to a certain value.
+
+6-10a. 10
+6-10c. 10
+6-10e. Infinite loop, will never terminate; this is probably a bug.
+
+println "Mo Tu We Th Fr Sa Su"
+println "      "
+let wkday=3
+for day=1 to 31 do
+    print day+" "
+	wkday += 1
+	if wkday==7 then
+	    println
+		wkday = 0
+	end
+end
+
+6-15.
+int s=0, i=1;
+while(i<=10) s+=i++;
+
+6-18a. 2 4 7 11 16
+6-18b. 4 9 (please get me my coding sickness bag)
+
+	
