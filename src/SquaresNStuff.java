@@ -7,6 +7,7 @@ public class SquaresNStuff {
 		int a = in.nextInt();
 		System.out.print("Enter the second number: ");
 		int b = in.nextInt();
+		in.close();
 		int small, big;
 		if(a>b) {
 			small = b;
